@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_HOST: "vendas"
+      MYSQL_DATABASE: "vendas"
+      MYSQL_USERNAME: "vendas"
+      MYSQL_PASSWORD: "vendas"
+    ports:
+      - "3306:3306"
