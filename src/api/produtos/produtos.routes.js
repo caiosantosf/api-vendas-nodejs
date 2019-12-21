@@ -1,50 +1,50 @@
-import PostsController from './posts.controllers';
-import * as Schemas from './posts.schemas';
+import ProdutosController from './produtos.controllers';
+import * as Schemas from './produtos.schemas';
 
-const controller = new PostsController();
+const controller = new ProdutosController();
 
 export default [
   {
     method: 'GET',
-    path: '/posts',
+    path: '/produtos',
     handler: controller.list,
     config: {
-      tags: ['api', 'posts'],
+      tags: ['api', 'produtos'],
     }
   },
   {
     method: 'GET',
-    path: '/posts/{id}',
+    path: '/produtos/{id}',
     handler: controller.detail,
     config: {
-      tags: ['api', 'posts'],
+      tags: ['api', 'produtos'],
       validate: Schemas.detail
     }
   },
   {
     method: 'POST',
-    path: '/posts',
+    path: '/produtos',
     handler: controller.create,
     config: {
-      tags: ['api', 'posts'],
+      tags: ['api', 'produtos'],
       validate: Schemas.create
     }
   },
   {
     method: 'PUT',
-    path: '/posts/{id}',
+    path: '/produtos/{id}',
     handler: controller.update,
     config: {
-      tags: ['api', 'posts'],
+      tags: ['api', 'produtos'],
       validate: Schemas.update
     }
   },
   {
     method: 'DELETE',
-    path: '/posts/{id}',
+    path: '/produtos/{id}',
     handler: controller.destroy,
     config: {
-      tags: ['api', 'posts'],
+      tags: ['api', 'produtos'],
       validate: Schemas.detail
     }
   }

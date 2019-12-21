@@ -1,32 +1,29 @@
 import { CREATED, NO_CONTENT } from 'http-status';
+import ProdutosBusiness from './produtos.business';
 
-import PostsBusiness from './posts.business';
+const produtosBusiness = new ProdutosBusiness();
 
-const postsBusiness = new PostsBusiness();
-
-export default class PostsController {
+export default class ProdutosController {
 
   async list(request, h) {
-    return await postsBusiness.list(request);
+    return await produtosBusiness.list(request);
   }
 
   async detail(request, h) {
-    return await postsBusiness.detail(request);
+    return await produtosBusiness.detail(request);
   }
 
   async create(request, h) {
-    const post = await postsBusiness.create(request);
-
+    const post = await produtosBusiness.create(request);
     return h.response(post).code(CREATED);
   }
 
   async update(request, h) {
-    return await postsBusiness.update(request);
+    return await produtosBusiness.update(request);
   }
 
   async destroy(request, h) {
-    await postsBusiness.destroy(request);
-
+    await produtosBusiness.destroy(request);
     return h.response().code(NO_CONTENT);
   }
 }

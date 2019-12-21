@@ -1,12 +1,11 @@
-version: "3"
-
+version: '3.3'
 services:
-  mysql:
-    image: mysql
+  db:
+    image: mysql:5.7
     environment:
-      MYSQL_HOST: "vendas"
-      MYSQL_DATABASE: "vendas"
-      MYSQL_USERNAME: "vendas"
-      MYSQL_PASSWORD: "vendas"
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: vendas
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
     ports:
-      - "3306:3306"
+      - "3309:3306"

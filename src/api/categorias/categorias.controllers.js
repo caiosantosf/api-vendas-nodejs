@@ -14,9 +14,7 @@ export default class CategoriasController {
   }
 
   async create({ params, payload }, h) {
-    const { produtoId } = params;
-    const categoria = await categoriasDAO.create({ ...payload, produtoId })
-
+    const categoria = await categoriasDAO.create({ ...payload })
     return h.response(categoria).code(CREATED);
   }
 
@@ -26,7 +24,6 @@ export default class CategoriasController {
 
   async destroy({ params }, h) {
     await categoriasDAO.destroy(params);
-
     return h.response().code(NO_CONTENT);
   }
 }

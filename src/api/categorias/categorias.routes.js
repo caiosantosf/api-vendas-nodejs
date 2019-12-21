@@ -6,46 +6,46 @@ const controller = new categoriasController();
 export default [
   {
     method: 'GET',
-    path: '/produtos/{produtoId}/categorias',
+    path: '/categorias',
     handler: controller.list,
     config: {
-      categorias: ['api', 'produtos', 'categorias'],
+      categorias: ['api', 'categorias'],
       validate: Schemas.list
     }
   },
   {
     method: 'GET',
-    path: '/produtos/{produtoId}/categorias/{id}',
+    path: '/categorias/{id}',
     handler: controller.detail,
     config: {
-      categorias: ['api', 'produtos', 'categorias'],
+      categorias: ['api', 'categorias'],
       validate: Schemas.detail
     }
   },
   {
     method: 'POST',
-    path: '/produtos/{produtoId}/categorias',
+    path: '/categorias',
     handler: controller.create,
     config: {
-      categorias: ['api', 'produtos', 'categorias'],
+      categorias: ['api', 'categorias'],
       validate: Schemas.create
     }
   },
   {
     method: 'PUT',
-    path: '/produtos/{produtoId}/categorias/{id}',
+    path: '/categorias/{id}',
     handler: controller.update,
     config: {
-      categorias: ['api', 'produtos', 'categorias'],
+      categorias: ['api', 'categorias'],
       validate: Schemas.update
     }
   },
   {
     method: 'DELETE',
-    path: '/produtos/{produtoId}/categorias/{id}',
+    path: '/categorias/{id}',
     handler: controller.destroy,
     config: {
-      categorias: ['api', 'produtos', 'categorias'],
+      categorias: ['api', 'categorias'],
       validate: Schemas.destroy
     }
   }

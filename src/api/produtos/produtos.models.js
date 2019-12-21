@@ -1,17 +1,18 @@
 import { Model } from 'sequelize';
 
 export default (sequelize, dataTypes) => {
-  class Post extends Model {}
+  class Produto extends Model {}
 
   Post.init({
-    title: dataTypes.STRING,
-    content: dataTypes.TEXT
-  }, { sequelize, modelName: 'post', tableName: 'posts' });
+    descricao: dataTypes.STRING,
+    quantidade: dataTypes.INTEGER,
+    valor: dataTypes.DECIMAL,
+  }, { sequelize, modelName: 'produto', tableName: 'produtos' });
 
   Post.associate = models => {
-    models.post.belongsTo(models.user);
-    models.post.hasMany(models.tag, { as: 'tags' });
+    models.produto.belongsTo(models.user);
+    models.produto.hasOne(models.categoria, { as: 'categoria' });
   };
 
-  return Post;
+  return Produto;
 };

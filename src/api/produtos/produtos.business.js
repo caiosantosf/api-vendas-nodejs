@@ -1,34 +1,30 @@
-import PostsDAO from './posts.dao';
+import ProdutosDAO from './produtos.dao';
 
-const postsDAO = new PostsDAO();
+const produtosDAO = new ProdutosDAO();
 
-export default class PostsBusiness {
+export default class ProdutosBusiness {
 
   async list({ params }) {
-    return postsDAO.findAll(params);
+    return produtosDAO.findAll(params);
   }
 
   async detail({ params }) {
     const { id } = params;
-
-    return postsDAO.findByID(id);
+    return produtosDAO.findByID(id);
   }
 
   async create({ payload, auth }) {
     const { id: userId } = auth.credentials;
-
-    return postsDAO.create({ ...payload, userId });
+    return produtosDAO.create({ ...payload, userId });
   }
 
   async update({ params, payload }) {
     const { id } = params;
-
-    return postsDAO.update(id, payload);
+    return produtosDAO.update(id, payload);
   }
 
   async destroy({ params }) {
     const { id } = params;
-
-    return postsDAO.destroy(id);
+    return produtosDAO.destroy(id);
   }
 }

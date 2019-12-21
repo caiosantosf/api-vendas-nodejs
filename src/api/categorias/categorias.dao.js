@@ -19,13 +19,11 @@ export default class CategoriasDAO {
 
   async update(where, data) {
     const categoria = await this.findByID(where);
-
     return await categoria.update(data);
   }
 
   async destroy(where) {
     const categoria = await this.findByID(where);
-
     return categoria.destroy();
   }
 }

@@ -9,7 +9,7 @@ export default () => ([
     plugin: HapiSequelize,
     options: [
       {
-        name: 'blog',
+        name: 'vendas',
         models: [
           './src/api/**/**.models.js'
         ],
