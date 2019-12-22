@@ -24,9 +24,9 @@ export default () => ([
       routes: 'src/api/**/**.routes.js'
     }
   },
-  {
+  /*{
     plugin: Auth
-  },
+  },*/
   {
     plugin: Documentation
   }

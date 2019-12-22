@@ -8,7 +8,7 @@ export default (sequelize, dataTypes) => {
   }, { sequelize, modelName: 'categoria', tableName: 'categorias' });
 
   Categoria.associate = models => {
-    models.categoria.hasMany(models.produto);
+    //models.categoria.hasMany(models.produto);
   };
 
   return Categoria;

@@ -8,17 +8,12 @@ export default [
     method: 'GET',
     path: '/categorias',
     handler: controller.list,
-    config: {
-      categorias: ['api', 'categorias'],
-      validate: Schemas.list
-    }
   },
   {
     method: 'GET',
     path: '/categorias/{id}',
     handler: controller.detail,
     config: {
-      categorias: ['api', 'categorias'],
       validate: Schemas.detail
     }
   },
@@ -27,7 +22,6 @@ export default [
     path: '/categorias',
     handler: controller.create,
     config: {
-      categorias: ['api', 'categorias'],
       validate: Schemas.create
     }
   },
@@ -36,7 +30,6 @@ export default [
     path: '/categorias/{id}',
     handler: controller.update,
     config: {
-      categorias: ['api', 'categorias'],
       validate: Schemas.update
     }
   },
@@ -45,7 +38,6 @@ export default [
     path: '/categorias/{id}',
     handler: controller.destroy,
     config: {
-      categorias: ['api', 'categorias'],
       validate: Schemas.destroy
     }
   }

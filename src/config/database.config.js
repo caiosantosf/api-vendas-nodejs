@@ -2,7 +2,7 @@ import { Sequelize } from 'sequelize';
 import Env from './environment.config';
 
 const DATABASES = {
-  test: {
+  /*test: {
     default: new Sequelize(Env.DB_NAME, {
       dialectOptions: {
         multipleStatements: true,
@@ -17,9 +17,15 @@ const DATABASES = {
         paranoid: true
       }
     })
-  },
+  },*/
   development: {
-    default: new Sequelize(Env.DB_NAME, {
+    default: new Sequelize(Env.DB_NAME, Env.DB_USERNAME, Env.DB_PASSWORD, {
+      host: Env.DB_HOST,
+      port: Env.DB_PORT,
+      dialect: 'mysql',
+      sync: {
+        force: true
+      },
       logging: Env.DEBUG,
       define: {
         freezeTableName: true,
