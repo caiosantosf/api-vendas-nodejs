@@ -10,7 +10,7 @@ export default (sequelize, dataTypes) => {
   }, { sequelize, modelName: 'user', tableName: 'users' });
 
   User.associate = models => {
-    models.user.hasMany(models.produto, { as: 'produtos' });
+    //models.user.hasMany(models.produto, { as: 'produtos' });
   };
 
   User.addHook('beforeCreate', async (user) => {

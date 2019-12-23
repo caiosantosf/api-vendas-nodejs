@@ -10,7 +10,7 @@ export default (sequelize, dataTypes) => {
   }, { sequelize, modelName: 'produto', tableName: 'produtos' });
 
   Produto.associate = models => {
-    models.produto.belongsTo(models.user);
+    //models.produto.belongsTo(models.user);
     models.produto.belongsTo(models.categoria, { as: 'categoria' });
   };
 

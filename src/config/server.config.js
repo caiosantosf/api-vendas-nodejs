@@ -5,8 +5,18 @@ import Plugins from './plugins.config';
 export const init = async () => {
   const server = Hapi.server({
     port: Env.PORT,
-    host: 'localhost'
+    host: 'localhost',
+    routes: {
+      validate: {
+          failAction: async (request, h, err) =>
+          {
+              if (err.isJoi) console.log(err.message);
+              throw err;
+          }
+        }
+      }
   });
+
   await server.register(Plugins(), { once: true });
 
   await server.initialize();

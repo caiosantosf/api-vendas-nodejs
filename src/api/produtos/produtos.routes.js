@@ -8,16 +8,12 @@ export default [
     method: 'GET',
     path: '/produtos',
     handler: controller.list,
-    config: {
-      tags: ['api', 'produtos'],
-    }
   },
   {
     method: 'GET',
     path: '/produtos/{id}',
     handler: controller.detail,
     config: {
-      tags: ['api', 'produtos'],
       validate: Schemas.detail
     }
   },
@@ -26,7 +22,6 @@ export default [
     path: '/produtos',
     handler: controller.create,
     config: {
-      tags: ['api', 'produtos'],
       validate: Schemas.create
     }
   },
@@ -35,7 +30,6 @@ export default [
     path: '/produtos/{id}',
     handler: controller.update,
     config: {
-      tags: ['api', 'produtos'],
       validate: Schemas.update
     }
   },
@@ -44,7 +38,6 @@ export default [
     path: '/produtos/{id}',
     handler: controller.destroy,
     config: {
-      tags: ['api', 'produtos'],
       validate: Schemas.detail
     }
   }

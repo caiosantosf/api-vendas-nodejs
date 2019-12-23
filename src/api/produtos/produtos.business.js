@@ -14,8 +14,9 @@ export default class ProdutosBusiness {
   }
 
   async create({ payload, auth }) {
-    const { id: userId } = auth.credentials;
-    return produtosDAO.create({ ...payload, userId });
+    //const { id: userId } = auth.credentials;
+    console.log(payload)
+    return produtosDAO.create({ ...payload})//, userId });
   }
 
   async update({ params, payload }) {

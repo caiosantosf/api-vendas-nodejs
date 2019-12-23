@@ -7,19 +7,18 @@ export default class ProdutosDAO {
 
   async findAll(params) {
     return Produto.findAll({
-      where: params,
-      include: [ 'categorias' ]
+      where: params
     });
   }
 
   async findByID(id) {
     return getObjectOr404(Produto, {
-      where: { id },
-      include: [ 'categorias' ]
+      where: { id }
     });
   }
 
   async create(data) {
+    console.log(data)
     return Produto.create(data);
   }
 
