@@ -16,8 +16,8 @@ export default class UsersController {
     return await usersDAO.findByID(id);
   }
 
-  async login({ payload }, h) {
-    const user = await authenticate(payload);
+  async login({ login }, h) {
+    const user = await authenticate(login);
     const token = getToken({
       id: user.id,
       email: user.email

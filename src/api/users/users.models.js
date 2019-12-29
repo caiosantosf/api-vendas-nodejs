@@ -5,12 +5,14 @@ export default (sequelize, dataTypes) => {
   class User extends Model {}
 
   User.init({
+    nome: dataTypes.STRING,
+    CPF_CNPJ: dataTypes.STRING,
     email: dataTypes.STRING,
     password: dataTypes.STRING
   }, { sequelize, modelName: 'user', tableName: 'users' });
 
   User.associate = models => {
-    //models.user.hasMany(models.produto, { as: 'produtos' });
+    models.user.hasMany(models.produto, { as: 'produtos' });
   };
 
   User.addHook('beforeCreate', async (user) => {
