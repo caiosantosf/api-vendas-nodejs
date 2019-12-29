@@ -38,7 +38,7 @@ export default [
     config: {
       auth: false,
       tags: ['api', 'users'],
-      validate: Schemas.create
+      validate: Schemas.login
     }
   },
   {
