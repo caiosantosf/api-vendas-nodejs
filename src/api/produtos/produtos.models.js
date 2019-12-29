@@ -12,6 +12,11 @@ export default (sequelize, dataTypes) => {
   Produto.associate = models => {
     //models.produto.belongsTo(models.user);
     models.produto.belongsTo(models.categoria, { as: 'categoria' });
+    Produto.belongsToMany(Pedido, {
+      as: [Relationship2],
+      through: [Pedido_Produto],
+      foreignKey: 'ProdutoId'
+    });
   };
 
   return Produto;
