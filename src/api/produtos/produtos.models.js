@@ -3,6 +3,10 @@ import { Model } from 'sequelize';
 export default (sequelize, dataTypes) => {
   class Produto extends Model {}
 
+  const PedidoProduto = sequelize.define('pedidos_produtos', {
+    quantidade: dataTypes.INTEGER
+  })
+
   Produto.init({
     descricao: dataTypes.STRING,
     quantidade: dataTypes.INTEGER,
@@ -12,12 +16,8 @@ export default (sequelize, dataTypes) => {
   Produto.associate = models => {
     //models.produto.belongsTo(models.user);
     models.produto.belongsTo(models.categoria, { as: 'categoria' });
-    Produto.belongsToMany(Pedido, {
-      as: [Relationship2],
-      through: [Pedido_Produto],
-      foreignKey: 'ProdutoId'
-    });
-  };
+    models.produto.belongsToMany(models.pedido, { through: PedidoProduto })
+  }
 
-  return Produto;
-};
+  return Produto
+}

@@ -1,7 +1,7 @@
-import UersController from './users.controllers';
+import UsersController from './users.controllers';
 import * as Schemas from './users.schemas';
 
-const controller = new UersController();
+const controller = new UsersController();
 
 export default [
   {

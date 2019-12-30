@@ -18,7 +18,6 @@ export default class ProdutosDAO {
   }
 
   async create(data) {
-    console.log(data)
     return Produto.create(data);
   }
 
