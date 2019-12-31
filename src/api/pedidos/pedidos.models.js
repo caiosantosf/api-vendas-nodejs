@@ -8,10 +8,11 @@ export default (sequelize, dataTypes) => {
   })
 
   Pedido.init({
-    descricao: dataTypes.STRING
+    valorTotal: dataTypes.DECIMAL
   }, { sequelize, modelName: 'pedido', tableName: 'pedidos' });
 
   Pedido.associate = models => {
+    models.pedido.belongsTo(models.user);
     models.pedido.belongsToMany(models.produto, { through: PedidoProduto })
   };
 

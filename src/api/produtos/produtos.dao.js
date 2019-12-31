@@ -17,6 +17,10 @@ export default class ProdutosDAO {
     });
   }
 
+  async simpleFindById(id) {
+    return Produto.findByPk(id)
+  }
+
   async create(data) {
     return Produto.create(data);
   }

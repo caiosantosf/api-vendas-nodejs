@@ -14,7 +14,7 @@ export default () => ([
           './src/api/**/**.models.js'
         ],
         sequelize: Database.default,
-        sync: true
+        sync: false
       }
     ]
   },

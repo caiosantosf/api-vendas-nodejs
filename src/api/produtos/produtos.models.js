@@ -10,11 +10,10 @@ export default (sequelize, dataTypes) => {
   Produto.init({
     descricao: dataTypes.STRING,
     quantidade: dataTypes.INTEGER,
-    valor: dataTypes.DECIMAL,
+    valor: dataTypes.DECIMAL
   }, { sequelize, modelName: 'produto', tableName: 'produtos' });
 
   Produto.associate = models => {
-    //models.produto.belongsTo(models.user);
     models.produto.belongsTo(models.categoria, { as: 'categoria' });
     models.produto.belongsToMany(models.pedido, { through: PedidoProduto })
   }

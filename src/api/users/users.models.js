@@ -6,8 +6,8 @@ export default (sequelize, dataTypes) => {
 
   User.init({
     nome: dataTypes.STRING,
-    CPF_CNPJ: dataTypes.STRING,
-    email: dataTypes.STRING,
+    cpf_cnpj: { type: dataTypes.STRING, unique: true },
+    email: { type: dataTypes.STRING, unique: true },
     password: dataTypes.STRING
   }, { sequelize, modelName: 'user', tableName: 'users' });
 

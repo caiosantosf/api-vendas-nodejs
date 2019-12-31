@@ -14,8 +14,10 @@ export default class PedidosController {
   }
 
   async create(request, h) {
-    const produto = await pedidosBusiness.create(request);
-    return h.response(produto).code(CREATED);
+    const pedidoOrError = await pedidosBusiness.create(request);
+    if (pedidoOrError.hasOwnProperty('dataValues'))
+      return h.response(pedidoOrError).code(CREATED);
+    return pedidoOrError
   }
 
   async update(request, h) {

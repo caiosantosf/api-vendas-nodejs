@@ -8,16 +8,12 @@ export default [
     method: 'GET',
     path: '/users',
     handler: controller.list,
-    config: {
-      tags: ['api', 'users']
-    }
   },
   {
     method: 'GET',
     path: '/users/{id}',
     handler: controller.detail,
     config: {
-      tags: ['api', 'users'],
       validate: Schemas.detail
     }
   },
@@ -27,7 +23,6 @@ export default [
     handler: controller.create,
     config: {
       auth: false,
-      tags: ['api', 'users'],
       validate: Schemas.create
     }
   },
@@ -37,7 +32,6 @@ export default [
     handler: controller.login,
     config: {
       auth: false,
-      tags: ['api', 'users'],
       validate: Schemas.login
     }
   },
@@ -46,7 +40,6 @@ export default [
     path: '/users/{id}',
     handler: controller.update,
     config: {
-      tags: ['api', 'users'],
       validate: Schemas.update
     }
   },
@@ -55,7 +48,6 @@ export default [
     path: '/users/{id}',
     handler: controller.destroy,
     config: {
-      tags: ['api', 'users'],
       validate: Schemas.detail
     }
   }
