@@ -1,37 +1,37 @@
-import PedidosDAO from './pedidos.dao';
-import ProdutosDAO from './../produtos/produtos.dao';
+import OrdersDAO from './orders.dao';
+import ProductsDAO from '../products/products.dao';
 import Boom from '@hapi/boom';
 
-const pedidosDAO = new PedidosDAO();
-const produtosDAO = new ProdutosDAO();
+const ordersDAO = new OrdersDAO();
+const productsDAO = new ProductsDAO();
 
-export default class PedidosBusiness {
+export default class OrdersBusiness {
 
   async list({ params }) {
-    return pedidosDAO.findAll(params);
+    return ordersDAO.findAll(params);
   }
 
   async detail({ params }) {
     const { id } = params;
-    return pedidosDAO.findByID(id);
+    return ordersDAO.findByID(id);
   }
 
   async create({ payload, auth }) {
     //const { id: userId } = auth.credentials;
     const userId = 1
 
-    const produtos = payload.produtos
+    const products = payload.products
     let okProducts = true
     let valorTotal = 0
 
-    for (const produto of produtos) {
+    for (const product of products) {
       try {
-        const Produto = await produtosDAO.simpleFindById(produto.id)
-        if (Produto) {
-          if (Produto.dataValues.quantidade < produto.quantidade) {
+        const Product = await productsDAO.simpleFindById(product.id)
+        if (Product) {
+          if (Product.dataValues.amount < product.amount) {
             okProducts = false
           } else {
-            valorTotal += Produto.dataValues.valor * produto.quantidade
+            total += Product.dataValues.price * product.amount
           }
         } else {
           okProducts = false
@@ -43,7 +43,7 @@ export default class PedidosBusiness {
     }
 
     if (okProducts) {
-      return pedidosDAO.create(userId, valorTotal, produtos)
+      return ordersDAO.create(userId, total, products)
     } else {
       return Boom.badRequest('The requested quantity is not available.')
     }
@@ -51,11 +51,11 @@ export default class PedidosBusiness {
 
   async update({ params, payload }) {
     const { id } = params;
-    return pedidosDAO.update(id, payload);
+    return ordersDAO.update(id, payload);
   }
 
   async destroy({ params }) {
     const { id } = params;
-    return pedidosDAO.destroy(id);
+    return ordersDAO.destroy(id);
   }
 }

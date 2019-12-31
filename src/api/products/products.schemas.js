@@ -5,10 +5,10 @@ const params = Joi.object({
 });
 
 const payload = Joi.object({
-  produtos: Joi.array().items(Joi.object({
-    id: Joi.number().required(),
-    quantidade: Joi.number().positive().required()
-  }))
+  description: Joi.string().min(5).max(200).required(),
+  amount: Joi.number().positive().required(),
+  price: Joi.number().precision(2).positive().required(),
+  categoryId: Joi.number().required()
 });
 
 export const detail = {

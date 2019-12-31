@@ -1,17 +1,17 @@
-import PedidosController from './pedidos.controllers';
-import * as Schemas from './pedidos.schemas';
+import ProductsController from './products.controllers';
+import * as Schemas from './products.schemas';
 
-const controller = new PedidosController();
+const controller = new ProductsController();
 
 export default [
   {
     method: 'GET',
-    path: '/pedidos',
+    path: '/products',
     handler: controller.list,
   },
   {
     method: 'GET',
-    path: '/pedidos/{id}',
+    path: '/products/{id}',
     handler: controller.detail,
     config: {
       validate: Schemas.detail
@@ -19,7 +19,7 @@ export default [
   },
   {
     method: 'POST',
-    path: '/pedidos',
+    path: '/products',
     handler: controller.create,
     config: {
       validate: Schemas.create
@@ -27,7 +27,7 @@ export default [
   },
   {
     method: 'PUT',
-    path: '/pedidos/{id}',
+    path: '/products/{id}',
     handler: controller.update,
     config: {
       validate: Schemas.update
@@ -35,7 +35,7 @@ export default [
   },
   {
     method: 'DELETE',
-    path: '/pedidos/{id}',
+    path: '/products/{id}',
     handler: controller.destroy,
     config: {
       validate: Schemas.detail

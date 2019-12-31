@@ -1,17 +1,17 @@
-import ProdutosController from './produtos.controllers';
-import * as Schemas from './produtos.schemas';
+import categoriesController from './categories.controllers';
+import * as Schemas from './categories.schemas';
 
-const controller = new ProdutosController();
+const controller = new categoriesController();
 
 export default [
   {
     method: 'GET',
-    path: '/produtos',
+    path: '/categories',
     handler: controller.list,
   },
   {
     method: 'GET',
-    path: '/produtos/{id}',
+    path: '/categories/{id}',
     handler: controller.detail,
     config: {
       validate: Schemas.detail
@@ -19,7 +19,7 @@ export default [
   },
   {
     method: 'POST',
-    path: '/produtos',
+    path: '/categories',
     handler: controller.create,
     config: {
       validate: Schemas.create
@@ -27,7 +27,7 @@ export default [
   },
   {
     method: 'PUT',
-    path: '/produtos/{id}',
+    path: '/categories/{id}',
     handler: controller.update,
     config: {
       validate: Schemas.update
@@ -35,10 +35,10 @@ export default [
   },
   {
     method: 'DELETE',
-    path: '/produtos/{id}',
+    path: '/categories/{id}',
     handler: controller.destroy,
     config: {
-      validate: Schemas.detail
+      validate: Schemas.destroy
     }
   }
 ];
