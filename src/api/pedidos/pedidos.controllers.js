@@ -1,4 +1,4 @@
-import { CREATED, NO_CONTENT } from 'http-status';
+import { CREATED, NO_CONTENT, OK } from 'http-status';
 import PedidosBusiness from './pedidos.business';
 
 const pedidosBusiness = new PedidosBusiness();
@@ -21,7 +21,10 @@ export default class PedidosController {
   }
 
   async update(request, h) {
-    return await pedidosBusiness.update(request);
+    const pedidoOrError = await pedidosBusiness.update(request);
+    if (pedidoOrError.hasOwnProperty('dataValues'))
+      return h.response(pedidoOrError).code(OK);
+    return pedidoOrError
   }
 
   async destroy(request, h) {

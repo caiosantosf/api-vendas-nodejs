@@ -13,25 +13,36 @@ export default class PedidosDAO {
   }
 
   async findByID(id) {
-    return getObjectOr404(Pedido, {
+    return await getObjectOr404(Pedido, {
       where: { id },
-      include: [{Produto}]
+      include: [{model: Produto}]
     });
+  }
+
+  async simpleFindById(id) {
+    return await Pedido.findByPk(id)
   }
 
   async create(userId, valorTotal, produtos) {
-    return Pedido.create({ valorTotal, userId }).then(async pedido => {
+    return Pedido.create({ valorTotal, userId }).then(async pedidoInserted => {
 
       for (const produto of produtos)
-        await pedido.addProdutos(produto.id, { through: { quantidade: produto.quantidade }})
+        await pedidoInserted.addProdutos(produto.id, { through: { quantidade: produto.quantidade }})
 
-      return Pedido.findByPk(pedido.dataValues.id, {include: [{model: Produto}]})
+      return await Pedido.findByPk(pedidoInserted.dataValues.id, {include: [{model: Produto}]})
     });
   }
 
-  async update(id, data) {
-    const pedido = await this.findByID(id);
-    return pedido.update(data);
+  async update(id, userId, valorTotal, produtos) {
+    const pedido = await this.simpleFindById(id);
+
+    return await pedido.update({ id, valorTotal, userId}).then(async pedidoUpdated => {
+
+      for (const produto of produtos)
+        await pedidoUpdated.setProdutos(produto.id, { through: { quantidade: produto.quantidade }})
+
+      return await Pedido.findByPk(pedidoUpdated.dataValues.id, {include: [{model: Produto}]})
+    })
   }
 
   async destroy(id) {

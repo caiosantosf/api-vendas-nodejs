@@ -4,7 +4,7 @@ export async function getObjectOr404(model, options) {
   const object = await model.findOne(options);
 
   if (!object) {
-    throw Boom.notFound('Object does not exist');
+    throw Boom.notFound('Objeto não existe!');
   }
 
   return object;

@@ -18,3 +18,5 @@ export default (sequelize, dataTypes) => {
 
   return Pedido;
 };
+
+//

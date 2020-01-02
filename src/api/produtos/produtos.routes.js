@@ -8,12 +8,16 @@ export default [
     method: 'GET',
     path: '/produtos',
     handler: controller.list,
+    config: {
+      auth: false
+    }
   },
   {
     method: 'GET',
     path: '/produtos/{id}',
     handler: controller.detail,
     config: {
+      auth: false,
       validate: Schemas.detail
     }
   },

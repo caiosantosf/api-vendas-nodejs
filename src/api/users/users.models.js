@@ -23,3 +23,5 @@ export default (sequelize, dataTypes) => {
 
   return User;
 }
+
+//

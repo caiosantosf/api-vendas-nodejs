@@ -13,3 +13,5 @@ export default (sequelize, dataTypes) => {
 
   return Categoria;
 };
+
+//

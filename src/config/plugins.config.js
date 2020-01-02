@@ -14,7 +14,7 @@ export default () => ([
           './src/api/**/**.models.js'
         ],
         sequelize: Database.default,
-        sync: false
+        sync: true
       }
     ]
   },
@@ -24,9 +24,9 @@ export default () => ([
       routes: 'src/api/**/**.routes.js'
     }
   },
-  /*{
+  {
     plugin: Auth
-  },*/
+  },
   {
     plugin: Documentation
   }

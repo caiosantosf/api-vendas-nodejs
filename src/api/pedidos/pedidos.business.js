@@ -8,54 +8,68 @@ const produtosDAO = new ProdutosDAO();
 export default class PedidosBusiness {
 
   async list({ params }) {
-    return pedidosDAO.findAll(params);
+    return await pedidosDAO.findAll(params);
   }
 
   async detail({ params }) {
     const { id } = params;
-    return pedidosDAO.findByID(id);
+    return await pedidosDAO.findByID(id);
   }
 
   async create({ payload, auth }) {
     //const { id: userId } = auth.credentials;
     const userId = 1
-
     const produtos = payload.produtos
-    let okProducts = true
+
+    let {valorTotal, erros} = await this.validaProdutos(produtos)
+
+    if (!erros.length) {
+      return await pedidosDAO.create(userId, valorTotal, produtos)
+    } else {
+      return Boom.badRequest(erros.join(' | '))
+    }
+  }
+
+  async update({ params, payload }) {
+    const { id } = params;
+    const { id: userId } = auth.credentials;
+    const produtos = payload.produtos
+
+    let {valorTotal, erros} = await this.validaProdutos(produtos)
+
+    if (!erros.length) {
+      return await pedidosDAO.update(id, userId, valorTotal, produtos);
+    } else {
+      return Boom.badRequest(erros.join(' | '))
+    }
+  }
+
+  async destroy({ params }) {
+    const { id } = params;
+    return await pedidosDAO.destroy(id);
+  }
+
+  async validaProdutos(produtos) {
     let valorTotal = 0
+    let erros = []
 
     for (const produto of produtos) {
       try {
         const Produto = await produtosDAO.simpleFindById(produto.id)
         if (Produto) {
           if (Produto.dataValues.quantidade < produto.quantidade) {
-            okProducts = false
+            erros.push(`A quantidade para o produto ${produto.id} não está disponível`)
           } else {
             valorTotal += Produto.dataValues.valor * produto.quantidade
           }
         } else {
-          okProducts = false
-          return Boom.notFound('Product does not exist')
+          erros.push(`Produto ${produto.id} não existe`)
         }
       } catch (e) {
         console.error(e)
       }
     }
 
-    if (okProducts) {
-      return pedidosDAO.create(userId, valorTotal, produtos)
-    } else {
-      return Boom.badRequest('The requested quantity is not available.')
-    }
-  }
-
-  async update({ params, payload }) {
-    const { id } = params;
-    return pedidosDAO.update(id, payload);
-  }
-
-  async destroy({ params }) {
-    const { id } = params;
-    return pedidosDAO.destroy(id);
+    return {valorTotal, erros}
   }
 }

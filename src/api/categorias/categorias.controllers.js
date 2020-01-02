@@ -27,3 +27,5 @@ export default class CategoriasController {
     return h.response().code(NO_CONTENT);
   }
 }
+
+//

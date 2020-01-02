@@ -13,6 +13,10 @@ export default class CategoriasDAO {
     return getObjectOr404(Categoria, { where });
   }
 
+  async simpleFindById(id) {
+    return Categoria.findByPk(id)
+  }
+
   async create(data) {
     return Categoria.create(data);
   }

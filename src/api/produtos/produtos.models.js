@@ -20,3 +20,5 @@ export default (sequelize, dataTypes) => {
 
   return Produto
 }
+
+//

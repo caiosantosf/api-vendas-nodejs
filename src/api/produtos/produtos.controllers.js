@@ -1,4 +1,4 @@
-import { CREATED, NO_CONTENT } from 'http-status';
+import { CREATED, NO_CONTENT, OK } from 'http-status';
 import ProdutosBusiness from './produtos.business';
 
 const produtosBusiness = new ProdutosBusiness();
@@ -14,12 +14,17 @@ export default class ProdutosController {
   }
 
   async create(request, h) {
-    const produto = await produtosBusiness.create(request);
-    return h.response(produto).code(CREATED);
+    const produtoOrError = await produtosBusiness.create(request);
+    if (produtoOrError.hasOwnProperty('dataValues'))
+      return h.response(produtoOrError).code(CREATED);
+    return produtoOrError
   }
 
   async update(request, h) {
-    return await produtosBusiness.update(request);
+    const produtoOrError = await produtosBusiness.update(request);
+    if (produtoOrError.hasOwnProperty('dataValues'))
+      return h.response(produtoOrError).code(OK);
+    return produtoOrError
   }
 
   async destroy(request, h) {
