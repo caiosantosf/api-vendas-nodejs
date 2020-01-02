@@ -2,9 +2,9 @@
 
 API desenvolvida em NodeJS com Hapi Framework
 
-Caio Santos Freitas
-Luismar Pavani
-Thiago Henrique de Matos
+* Caio Santos Freitas
+* Luismar Pavani
+* Thiago Henrique de Matos
 
 # Como rodar o projeto
 
