@@ -8,6 +8,8 @@ API desenvolvida em NodeJS com Hapi Framework
 
 # Como rodar o projeto
 
+* Instalar dependencias: npm install
+
 * Subir o banco de dados no docker: sudo docker-compose up -d
 
 * Criar arquivo .env baseado no .env.sample modificando os dados caso necessário.
