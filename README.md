@@ -18,4 +18,4 @@ API desenvolvida em NodeJS com Hapi Framework
 
 * Para os testes há um coleção do postman no repositório com todas as requests necessárias.
 
-* É necessário cadastrar o usuario pela request Post Users e em seguida fazer pela request Post Users (Login). O token gerado será utilizado no campo Authorization no header das requisições privadas
+* É necessário cadastrar o usuario pela request Post Users e em seguida fazer login pela request Post Users (Login). O token gerado será utilizado no campo Authorization no header das requisições privadas
